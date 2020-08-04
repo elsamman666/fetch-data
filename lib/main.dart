@@ -26,7 +26,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<dynamic> element = [];
   List<KhabarData> khabarDataList = [];
-  Map map;
+  Map mapResponse;
 
   @override
   void initState() {
@@ -42,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
         "http://ninanews.com/NinaNewsService/api/values/GetLastXBreakingNews?rowsToReturn=10&fbclid=IwAR3dsL2EboYKuoOeVIdW7YK0dIcJMfjh8xNie4CkoCxwefNmARffpCa6ivs");
 
     if (response.statusCode == 200) {
-      map = json.decode(response.body);
-      element = map['Data'];
-      for (int i = 0; i <= element.length; i++) {
+      mapResponse = json.decode(response.body);
+      element = mapResponse['Data'];
+      for (int index = 0; index <= element.length; index++) {
         KhabarData data = new KhabarData(
-            element[i]['Khabar_Title'],
-            element[i]['Khabar_Details'],
-            element[i]['Khabar_Date'],
-            element[i]['Pic']);
+            element[index]['Khabar_Title'],
+            element[index]['Khabar_Details'],
+            element[index]['Khabar_Date'],
+            element[index]['Pic']);
         setState(() {
           khabarDataList.add(data);
         });
